@@ -8,12 +8,12 @@ const projects = [
   },
   {
     title: "Website Redesign",
-    image: "/assets/portfolio2.jpg",
+    image: "/assets/website.png",
     desc: "Modern, responsive website for a local business.",
   },
   {
     title: "Social Media Growth",
-    image: "/assets/portfolio3.jpg",
+    image: "/assets/social.png",
     desc: "Doubled engagement for a retail client in 6 months.",
   },
   {
@@ -39,7 +39,10 @@ function Portfolio() {
               <div
                 key={idx}
                 className="portfolio-card"
-                style={{backgroundImage: `url(${project.image})`}}
+                style={{
+                  backgroundImage: `url(${project.image})`,
+                  backgroundSize: idx === 1 ? 'contain' : 'cover'
+                }}
               >
                 <div className="portfolio-content">
                   <h3 className="font-semibold mb-2" style={{fontSize: '1.1rem', color: 'var(--color-accent)'}}>{project.title}</h3>

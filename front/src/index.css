@@ -145,10 +145,15 @@ button:focus-visible {
   font-weight: bold;
   font-size: 1.25rem;
   letter-spacing: 0.05em;
+  margin-right: 2.5rem;
+  padding-left: 2rem;
 }
 .navbar-links {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
+}
+.navbar-links .navbar-link:last-child {
+  padding-right: 2rem;
 }
 .navbar-link {
   cursor: pointer;
@@ -366,7 +371,7 @@ button:focus-visible {
   border-radius: 1rem;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   overflow: hidden;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
@@ -533,6 +538,12 @@ button:focus-visible {
 }
 .footer-email a:hover {
   color: var(--color-accent);
+}
+.footer-row > :first-child {
+  padding-left: 2rem;
+}
+.footer-row > :last-child {
+  padding-right: 2rem;
 }
 
 /* ========== DarkMode Toggle ========== */
