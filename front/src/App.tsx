@@ -8,6 +8,7 @@ import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import DarkModeToggle from "./components/DarkModeToggle";
+import ReactFullpage from '@fullpage/react-fullpage';
 
 function App() {
   return (
@@ -23,16 +24,26 @@ function App() {
     >
       <DarkModeToggle />
       <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Services />
-        <Portfolio />
-        <Testimonials />
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          <Contact />
-        </div>
-      </main>
+      <ReactFullpage
+        anchors={["hero", "about", "services", "ourwork", "testimonials", "contact"]}
+        navigation
+        navigationTooltips={["Hero", "About", "Services", "Our Work", "Testimonials", "Contact"]}
+        scrollingSpeed={700}
+        easing="easeInOutCubic"
+        credits={{ enabled: true, label: 'Made with fullPage.js', position: 'right' }}
+        render={({ state, fullpageApi }) => {
+          return (
+            <ReactFullpage.Wrapper>
+              <div className="section"><Hero /></div>
+              <div className="section"><About /></div>
+              <div className="section"><Services /></div>
+              <div className="section"><Portfolio /></div>
+              <div className="section"><Testimonials /></div>
+              <div className="section"><Contact /></div>
+            </ReactFullpage.Wrapper>
+          );
+        }}
+      />
       <Footer />
     </div>
   );

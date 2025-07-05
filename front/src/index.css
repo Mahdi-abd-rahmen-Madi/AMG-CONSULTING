@@ -265,9 +265,11 @@ button:focus-visible {
 
 /* ========== Section ========== */
 .section {
-  min-width: 100vw;
+  height: 100vh;
   width: 100vw;
-  padding: 5rem 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  padding: 0;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #fff;
   border-radius: 0;
