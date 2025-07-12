@@ -548,25 +548,19 @@ button:focus-visible {
   padding-right: 2rem;
 }
 
-/* ========== DarkMode Toggle ========== */
-.darkmode-toggle {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 100;
-  background: #e5e7eb;
-  color: #18181b;
-  padding: 0.75rem;
-  border-radius: 50%;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  font-size: 1.5rem;
+/* ========== Menu Theme Toggle ========== */
+.menu-theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
   border: none;
   cursor: pointer;
-  transition: background 0.2s;
+  font-size: 1rem;
 }
-.dark .darkmode-toggle {
-  background: #23272f;
-  color: #f3f3f3;
+
+.menu-theme-toggle span {
+  font-size: 0.9rem;
 }
 
 /* ========== Utility ========== */
