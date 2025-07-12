@@ -753,7 +753,7 @@ html, body {
 }
 
 .about-container {
-  max-width: 600px; /* or even 700px for testing */
+  max-width: 900px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -796,6 +796,14 @@ html, body {
   align-items: center;
 }
 
+.about-cards-row {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  justify-content: center;
+  align-items: stretch;
+}
+
 .about-mission, .about-values {
   background: rgba(255,255,255,0.13);
   border-radius: 1rem;
@@ -809,6 +817,12 @@ html, body {
   align-items: center;
   justify-content: center;
   position: relative;
+  flex: 1;
+  max-width: 700px;
+}
+
+.about-mission {
+  max-width: 900px;
 }
 
 .about-mission-icon, .about-values-icon {
@@ -1278,9 +1292,14 @@ html, body {
     flex-direction: column;
     align-items: stretch;
   }
+  .about-cards-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
   .about-mission, .about-values {
     padding: 0;
     border: none;
+    max-width: 100%;
   }
   .contact-card {
     flex-direction: column;
@@ -1306,6 +1325,10 @@ html, body {
   .testimonial-card {
     margin-left: auto;
     margin-right: auto;
+  }
+  .about-title {
+    margin-top: -1.5rem;
+    padding-bottom: 1.5rem;
   }
 }
 

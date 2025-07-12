@@ -460,19 +460,21 @@ function Main() {
                   <div className="about-description">
                     At AMG Consulting, our mission is to empower businesses in Tunisia and beyond to reach their full potential through innovative marketing strategies, creative storytelling, and data-driven results.
                   </div>
-                  <div className="about-mission">
-                    <div className="about-mission-icon"><FaLightbulb color="var(--color-accent)" size={35} /></div>
-                    <h3 className="about-mission-title">Our Mission</h3>
-                    <p className="about-mission-desc">To deliver measurable growth for our clients by combining creativity, technology, and strategic thinking.</p>
-                  </div>
-                  <div className="about-values">
-                    <div className="about-values-icon"><FaHeart color="var(--color-accent)" size={35} /></div>
-                    <h3 className="about-values-title">Our Values</h3>
-                    <div className="about-list-centered">
-                      <div className="about-list-item">Integrity & Transparency</div>
-                      <div className="about-list-item">Innovation & Excellence</div>
-                      <div className="about-list-item">Client-Centric Approach</div>
-                      <div className="about-list-item">Collaboration & Growth</div>
+                  <div className="about-cards-row">
+                    <div className="about-mission">
+                      <div className="about-mission-icon"><FaLightbulb color="var(--color-accent)" size={35} /></div>
+                      <h3 className="about-mission-title">Our Mission</h3>
+                      <p className="about-mission-desc">To deliver measurable growth for our clients by combining creativity, technology, and strategic thinking.</p>
+                    </div>
+                    <div className="about-values">
+                      <div className="about-values-icon"><FaHeart color="var(--color-accent)" size={35} /></div>
+                      <h3 className="about-values-title">Our Values</h3>
+                      <div className="about-list-centered">
+                        <div className="about-list-item">Integrity & Transparency</div>
+                        <div className="about-list-item">Innovation & Excellence</div>
+                        <div className="about-list-item">Client-Centric Approach</div>
+                        <div className="about-list-item">Collaboration & Growth</div>
+                      </div>
                     </div>
                   </div>
                 </>
