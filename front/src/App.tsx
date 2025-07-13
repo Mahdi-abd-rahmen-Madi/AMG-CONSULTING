@@ -9,6 +9,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import DarkModeToggle from "./components/DarkModeToggle";
 import ReactFullpage from '@fullpage/react-fullpage';
+import { Analytics } from "@vercel/analytics/next";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         }}
       />
       <Footer />
+      <Analytics />
     </div>
   );
 }
