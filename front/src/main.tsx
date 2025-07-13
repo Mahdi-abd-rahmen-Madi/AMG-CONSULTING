@@ -335,7 +335,7 @@ function Main() {
       </div>
       {/* Scroll Snap Container */}
       <div className="scroll-snap-container">
-        <div className="hero-section">
+        <div className="hero-section" id="hero">
           <div className="hero-bg-shapes"></div>
           <div className="hero-grid-pattern"></div>
           <div className={`hero-content ${isVisible ? 'hero-visible' : 'hero-hidden'}`}> 
@@ -414,7 +414,7 @@ function Main() {
             </div>
           </div>
         </div>
-        <div className="about-section">
+        <div className="about-section" id="about">
           <div className="about-container">
             <h2 className="about-title">About AMG Consulting</h2>
             <div className="about-card">
@@ -482,7 +482,7 @@ function Main() {
             </div>
           </div>
         </div>
-        <div className="services-section">
+        <div className="services-section" id="services">
           <div className="services-container">
             <h2 className="services-title">Our Services</h2>
             <div className="services-card">
@@ -525,7 +525,7 @@ function Main() {
             </div>
           </div>
         </div>
-        <div className="portfolio-section">
+        <div className="portfolio-section" id="portfolio">
           <div className="portfolio-container">
             <h2 className="portfolio-title">Our Work</h2>
             <div className="portfolio-card">
@@ -556,6 +556,14 @@ function Main() {
                         <div className="portfolio-carousel-content">
                           <h3 className="portfolio-project-title">{project.title}</h3>
                           <p className="portfolio-project-desc">{project.desc}</p>
+                          <a
+                            href="https://www.behance.net/CR4SH"
+                            className="portfolio-behance-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            View on Behance
+                          </a>
                         </div>
                       </div>
                     );
@@ -577,6 +585,14 @@ function Main() {
                       <div className="portfolio-content">
                         <h3 className="portfolio-project-title">{project.title}</h3>
                         <p className="portfolio-project-desc">{project.desc}</p>
+                        <a
+                          href="https://www.behance.net/CR4SH"
+                          className="portfolio-behance-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View on Behance
+                        </a>
                       </div>
                     </div>
                   ))}
@@ -585,7 +601,7 @@ function Main() {
             </div>
           </div>
         </div>
-        <div className="testimonials-section">
+        <div className="testimonials-section" id="testimonials">
           <div className="testimonials-container">
             <h2 className="testimonials-title">Testimonials</h2>
             <div className="testimonials-card">
@@ -628,7 +644,7 @@ function Main() {
             </div>
           </div>
         </div>
-        <div className="contact-section">
+        <div className="contact-section" id="contact">
           <div className="contact-container">
             <h2 className="contact-title">Contact Us</h2>
             <div className="contact-card">

@@ -1126,6 +1126,40 @@ html, body {
 .portfolio-project-title { font-size: 1.2rem; color: #fff; font-weight: 600; margin-bottom: 0.75rem; }
 .portfolio-project-desc { color: #e5e7eb; font-size: 0.95rem; line-height: 1.4; }
 
+.portfolio-behance-link {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translateX(-50%);
+  background: #1769ff;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(23, 105, 255, 0.18);
+  transition: background 0.2s, box-shadow 0.2s, opacity 0.2s;
+  opacity: 0.95;
+  z-index: 5;
+}
+.portfolio-card-item:hover .portfolio-behance-link,
+.portfolio-carousel-card:hover .portfolio-behance-link {
+  display: block;
+  opacity: 1;
+}
+.portfolio-behance-link:hover {
+  background: #1256cc;
+  box-shadow: 0 8px 32px rgba(23, 105, 255, 0.28);
+}
+.portfolio-content {
+  position: relative;
+}
+.portfolio-carousel-content {
+  position: relative;
+}
+
 @media (max-width: 1200px) {
   .portfolio-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1134,9 +1168,26 @@ html, body {
 }
 
 @media (max-width: 700px) {
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 1fr);
+  .portfolio-carousel-content .portfolio-behance-link,
+  .portfolio-content .portfolio-behance-link {
+    display: block !important;
+    opacity: 1 !important;
+    position: static !important;
+    margin: 1rem auto 0 auto !important;
+    left: unset !important;
+    bottom: unset !important;
+    transform: none !important;
+    width: 90% !important;
+    text-align: center !important;
+    font-size: 1.05rem !important;
+    padding: 0.8rem 0 !important;
+    background: #1769ff !important;
+    border: 2px solid #fff !important;
+    border-radius: 9999px !important;
+    z-index: 10 !important;
+  }
+  .portfolio-content, .portfolio-carousel-content {
+    position: static !important;
   }
 }
 
