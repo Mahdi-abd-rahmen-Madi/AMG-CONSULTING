@@ -33,15 +33,39 @@ function AppRouter() {
     };
   }, []);
 
-  if (!isMobile) {
-    return (
-      <div style={{ textAlign: 'center', marginTop: '3rem', fontSize: '1.2rem' }}>
-        This site is only available on mobile devices.
-      </div>
-    );
+  if (route === 'qr') {
+    if (!isMobile) {
+      return (
+        <div style={{
+          minHeight: '100vh',
+          width: '100vw',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxSizing: 'border-box',
+        }}>
+          <div style={{
+            background: 'rgba(255,255,255,0.13)',
+            borderRadius: '1.5rem',
+            padding: '2.5rem 2rem',
+            boxShadow: '0 4px 24px 0 rgba(0,0,0,0.10)',
+            textAlign: 'center',
+            maxWidth: 400,
+          }}>
+            <h2 style={{ color: '#fff', fontWeight: 700, fontSize: '2rem', marginBottom: '1.2rem' }}>
+              Mobile Only
+            </h2>
+            <p style={{ color: '#e0e7ef', fontSize: '1.15rem', marginBottom: 0 }}>
+              This page is only available on mobile devices.<br />
+              Please scan the QR code using your phone or resize your browser window to mobile width.
+            </p>
+          </div>
+        </div>
+      );
+    }
+    return <MobileQRCodePage />;
   }
-
-  if (route === 'qr') return <MobileQRCodePage />;
   return <Main onShowQR={() => {
     window.history.pushState({}, '', '/qr');
     setRoute('qr');
@@ -344,16 +368,41 @@ function Main({ onShowQR }: { onShowQR?: () => void }) {
         {open && (
           <div className="menu-dropdown">
             {navLinks.map((link) => (
-              <a key={link.to} href={`#${link.to}`} className="menu-link" onClick={() => setOpen(false)}>
+              <a
+                key={link.to}
+                href={`#${link.to}`}
+                className="menu-link"
+                onClick={e => {
+                  e.preventDefault();
+                  setOpen(false);
+                  const section = document.getElementById(link.to);
+                  if (section) {
+                    if (window.matchMedia('(max-width: 900px)').matches) {
+                      // Find the scrollable container
+                      const container = document.querySelector('.scroll-snap-container');
+                      if (container) {
+                        let y = section.offsetTop;
+                        if (link.to !== 'hero') {
+                          y = y - 24;
+                        }
+                        container.scrollTo({ top: y, behavior: 'smooth' });
+                      } else {
+                        let y = section.getBoundingClientRect().top + window.pageYOffset;
+                        if (link.to !== 'hero') {
+                          y = y - 24;
+                        }
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                      }
+                    } else {
+                      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }
+                }}
+              >
                 {link.label}
               </a>
             ))}
-            {/* QR Code Page Link (mobile only) */}
-            {isMobile && (
-              <button className="menu-link" onClick={() => { setOpen(false); onShowQR && onShowQR(); }}>
-                Show QR Code
-              </button>
-            )}
+            {/* QR Code Page Link (mobile only) - removed as requested */}
           </div>
         )}
       </div>
@@ -707,9 +756,14 @@ function Main({ onShowQR }: { onShowQR?: () => void }) {
               </form>
               <div className="contact-info">
                 <div className="contact-map">
-                  <MapContainer center={[36.8065, 10.1815]} zoom={13} scrollWheelZoom={false} className="contact-map-leaflet">
-                    <TileLayer attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a>' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                    <Marker position={[36.8065, 10.1815]}>
+                  {/* @ts-ignore */}
+                  <MapContainer center={{ lat: 36.8065, lng: 10.1815 }} zoom={13} scrollWheelZoom={false} className="contact-map-leaflet">
+                    <TileLayer
+                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                      // @ts-ignore
+                      attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a>'
+                    />
+                    <Marker position={{ lat: 36.8065, lng: 10.1815 }}>
                       <Popup>AMG Consulting, Tunis</Popup>
                     </Marker>
                   </MapContainer>

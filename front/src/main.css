@@ -1359,17 +1359,23 @@ html, body {
     min-width: 0;
     max-width: 100vw;
   }
+  .scroll-snap-container {
+    display: block;
+  }
   .hero-section,
   .about-section,
   .services-section,
   .portfolio-section,
   .testimonials-section,
   .contact-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-height: 100vh;
-    height: auto;
-    padding: 0;
+    height: 100vh;
     width: 100vw;
-    max-width: 100vw;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
   }
   .about-card,
   .services-card,
