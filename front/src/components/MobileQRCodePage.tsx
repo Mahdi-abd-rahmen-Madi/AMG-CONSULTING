@@ -1,5 +1,6 @@
 import React from 'react';
-import { QRCode } from 'qrcode.react';
+// @ts-ignore
+import QRCode from 'qrcode.react';
 
 const MAIN_PAGE_URL = window.location.origin;
 
