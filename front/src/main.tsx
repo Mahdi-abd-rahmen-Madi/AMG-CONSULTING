@@ -6,20 +6,49 @@ import { FaMoon, FaSun, FaWhatsapp, FaInstagram, FaBullhorn, FaChartLine, FaPale
 import { ChevronRight, TrendingUp, Users, Award, ArrowRight } from 'lucide-react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import MobileQRCodePage from './components/MobileQRCodePage';
 
-function Main() {
-  // Dark mode toggle logic
-  const [dark, setDark] = useState(() => localStorage.getItem('theme') === 'dark');
+// Add simple routing logic
+const getRoute = () => {
+  if (window.location.pathname === '/qr') return 'qr';
+  return 'main';
+};
+
+function isMobileDevice() {
+  return window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
+}
+
+function AppRouter() {
+  const [route, setRoute] = useState(getRoute());
+  const [isMobile, setIsMobile] = useState(isMobileDevice());
+
   useEffect(() => {
-    if (dark) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [dark]);
+    const onPopState = () => setRoute(getRoute());
+    window.addEventListener('popstate', onPopState);
+    const onResize = () => setIsMobile(isMobileDevice());
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('popstate', onPopState);
+      window.removeEventListener('resize', onResize);
+    };
+  }, []);
 
+  if (!isMobile) {
+    return (
+      <div style={{ textAlign: 'center', marginTop: '3rem', fontSize: '1.2rem' }}>
+        This site is only available on mobile devices.
+      </div>
+    );
+  }
+
+  if (route === 'qr') return <MobileQRCodePage />;
+  return <Main onShowQR={() => {
+    window.history.pushState({}, '', '/qr');
+    setRoute('qr');
+  }} />;
+}
+
+function Main({ onShowQR }: { onShowQR?: () => void }) {
   // Navbar logic
   const [open, setOpen] = useState(false);
   const navLinks = [
@@ -319,17 +348,12 @@ function Main() {
                 {link.label}
               </a>
             ))}
-            <button 
-              className="menu-link menu-theme-toggle" 
-              onClick={() => {
-                setDark((d) => !d);
-                setOpen(false);
-              }} 
-              aria-label="Toggle dark mode"
-            >
-              {dark ? <FaSun /> : <FaMoon />}
-              <span>{dark ? 'Light Mode' : 'Dark Mode'}</span>
-            </button>
+            {/* QR Code Page Link (mobile only) */}
+            {isMobile && (
+              <button className="menu-link" onClick={() => { setOpen(false); onShowQR && onShowQR(); }}>
+                Show QR Code
+              </button>
+            )}
           </div>
         )}
       </div>
@@ -716,4 +740,4 @@ function Main() {
   );
 }
 
-createRoot(document.getElementById('root')!).render(<Main />);
+createRoot(document.getElementById('root')!).render(<AppRouter />);
